@@ -17,7 +17,6 @@ int main()
   Color palette[3] = {WHITE, LIGHTGRAY, DARKGRAY};
   float size = 80.f;
   float boardWidth = 11 * size;
-  Piece p = Piece(Piece::T_WHITE | Piece::T_KNIGHT, (Vector2){600, 400});
 
   float leftBorder = (width - boardWidth) / 2;
   float topBorder = (height - boardWidth) / 2;
@@ -47,16 +46,37 @@ int main()
     }
   }
 
+  std::vector<Piece> pieces = {
+    Piece(Piece::T_BLACK | Piece::T_PAWN   , 1, 4, board[0]),    
+    Piece(Piece::T_BLACK | Piece::T_PAWN   , 2, 4, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_PAWN   , 3, 4, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_PAWN   , 4, 4, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_PAWN   , 5, 4, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_PAWN   , 6, 3, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_PAWN   , 7, 2, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_PAWN   , 8, 1, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_PAWN   , 9, 0, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_ROOK   , 2, 3, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_KNIGHT , 3, 2, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_QUEEN  , 4, 1, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_BISHOP , 5, 0, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_KING   , 6, 0, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_KNIGHT , 7, 0, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_ROOK   , 8, 0, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_BISHOP , 5, 1, board[0]),
+    Piece(Piece::T_BLACK | Piece::T_BISHOP , 5, 2, board[0]),
+    };
+
   while (!WindowShouldClose())
   {
     BeginDrawing();
       ClearBackground(DARKGREEN);
       for (int i = 0; i < 91; i++)
         board[i].Draw();
-      if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && CheckCollisionCircles(p.pos, p.size / 2, GetMousePosition(), 2.f))
-        p.pos = GetMousePosition();
-      else p.GridSnap(board);
-      p.Draw();
+      //if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && CheckCollisionCircles(p.pos, p.size / 2, GetMousePosition(), 2.f))
+        //p.pos = GetMousePosition();
+      //else p.GridSnap(board);
+      for (Piece p : pieces) p.Draw();
     EndDrawing();
   }
 }

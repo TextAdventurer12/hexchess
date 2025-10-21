@@ -53,3 +53,11 @@ void Piece::GridSnap(std::vector<Hexagon> &grid)
   }
   pos = nearest;
 }
+
+Piece::Piece(unsigned int type, int q, int r, Hexagon &gridOrigin)
+{
+  this->type = type;
+  Hexagon base = Hexagon(q, r, gridOrigin.origin, gridOrigin.radius, BLANK);
+  this->pos = base.centerPx();
+}
+
